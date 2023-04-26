@@ -3,7 +3,7 @@ import React from 'react';
 import { getAllPosts, getSinglePost } from '../lib/notionAPI';
 import { ReactMarkdown } from 'react-markdown/lib/react-markdown';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
-import { VscDarkPlus } from 'react-syntax-highlighter/dist/cjs/styles/prism';
+import { vscDarkPlus } from 'react-syntax-highlighter/dist/cjs/styles/prism';
 import Link from 'next/link';
 
 export const getStaticPaths = async () => {
@@ -15,7 +15,7 @@ export const getStaticPaths = async () => {
   };
 };
 
-export const getStaticProps = async ({ params }) => {
+export const getStaticProps = async ({ params }: any) => {
   const post = await getSinglePost(params.slug);
 
   return {
@@ -26,7 +26,7 @@ export const getStaticProps = async ({ params }) => {
   };
 };
 
-const Post = ({ post }) => {
+const Post = ({ post }: any) => {
   return (
     <section className='container lg:px-2 px-5 h-screen lg:w-2/5 mx-auto mt-20'>
       <h2 className='w-full text-2xl font-medium'>{post.metadata.title}</h2>
@@ -46,20 +46,17 @@ const Post = ({ post }) => {
         <ReactMarkdown
           children={post.markdown}
           components={{
-            code({ node, inline, className, children}) {
+            code({ node, inline, className, children }) {
               const match = /language-(\w+)/.exec(className || '');
               return !inline && match ? (
                 <SyntaxHighlighter
-                  
                   children={String(children).replace(/\n$/, '')}
-                  style={VscDarkPlus}
+                  style={vscDarkPlus}
                   language={match[1]}
                   PreTag='div'
                 />
               ) : (
-                <code>
-                  {children}
-                </code>
+                <code>{children}</code>
               );
             },
           }}

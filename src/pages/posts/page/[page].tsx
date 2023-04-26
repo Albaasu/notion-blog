@@ -9,7 +9,7 @@ import {
 import Head from 'next/head';
 import Pagenation from '@/components/Pagenation/Pagenation';
 
-export const getStaticPaths: GetStaticPaths = async () => {
+export const getStaticPaths: any = async () => {
   const numberOfPages = await getNumberOfPages();
 
   let params = [];
@@ -23,7 +23,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 };
 
 export const getStaticProps: GetStaticProps = async (context) => {
-  const currentPage = context.params?.page;
+  const currentPage:any = context.params?.page;
   const postsByPage = await getPostsByPage(
     parseInt(currentPage.toString(), 10)
   );
@@ -39,7 +39,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
   };
 };
 
-const BlogPageList = ({ postsByPage, numberOfPage }) => {
+const BlogPageList = ({ postsByPage, numberOfPage }:any) => {
   return (
     <div className='container mx-auto h-full w-full'>
       <Head>
@@ -53,7 +53,7 @@ const BlogPageList = ({ postsByPage, numberOfPage }) => {
           Notion Blog🚀
         </h1>
         <section className=' sm:grid  grid-cols-2 w:5/6 gap-4 mx-auto'>
-          {postsByPage.map((post) => (
+          {postsByPage.map((post:any) => (
             <div key={post.id}>
               <SinglePost
                 title={post.title}

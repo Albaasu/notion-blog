@@ -1,10 +1,14 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 import Navbar from './Navbar';
 
-const Layout = ({ children }) => {
+type Props = {
+  children: ReactNode;
+};
+
+const Layout = ({ children }: Props) => {
   return (
     <div>
-      <Navbar/>
+      <Navbar />
       {children}
     </div>
   );

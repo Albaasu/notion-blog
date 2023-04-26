@@ -9,11 +9,9 @@ const notion = new Client({
 const n2m = new NotionToMarkdown({ notionClient: notion });
 
 export const getAllPosts = async () => {
-  
   const posts = await notion.databases.query({
-    database_id :process.env.NOTION_DATABASE_ID,
+    database_id: String(process.env.NOTION_DATABASE_ID),
     page_size: 100,
-    
   });
   const allPosts = posts.results;
 
@@ -22,17 +20,17 @@ export const getAllPosts = async () => {
   });
 };
 
-const getPageMetaData = (post:any) => {
-  const getTags = (tags:any) => {
-    const allTags = tags.map((tag:any) => {
+const getPageMetaData = (post: any) => {
+  const getTags = (tags: any) => {
+    const allTags = tags.map((tag: any) => {
       return tag.name;
     });
     return allTags;
   };
 
-  const getDescription = (richText:any) => {
+  const getDescription = (richText: any) => {
     let plainText = '';
-    richText.forEach((textObject:any) => {
+    richText.forEach((textObject: any) => {
       if (textObject.type === 'text') {
         plainText += textObject.text.content;
       }
@@ -50,9 +48,9 @@ const getPageMetaData = (post:any) => {
   };
 };
 
-export const getSinglePost = async (slug:any) => {
+export const getSinglePost = async (slug: any) => {
   const response = await notion.databases.query({
-    database_id: process.env.NOTION_DATABASE_ID,
+    database_id: String(process.env.NOTION_DATABASE_ID),
     filter: {
       property: 'Slug',
       formula: {
@@ -125,11 +123,10 @@ export const getNumberOfPagesByTag = async (tagName: string) => {
   );
 };
 
-
 export const getAllTags = async () => {
   const allPosts = await getAllPosts();
   const AllTagsDuplicationList = allPosts.flatMap((post) => post.tags);
   const set = new Set(AllTagsDuplicationList);
   const allTagsList = Array.from(set);
   return allTagsList;
-}
+};

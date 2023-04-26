@@ -9,9 +9,11 @@ const notion = new Client({
 const n2m = new NotionToMarkdown({ notionClient: notion });
 
 export const getAllPosts = async () => {
+  
   const posts = await notion.databases.query({
-    database_id: process.env.NOTION_DATABASE_ID,
+    database_id :process.env.NOTION_DATABASE_ID,
     page_size: 100,
+    
   });
   const allPosts = posts.results;
 

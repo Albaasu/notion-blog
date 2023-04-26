@@ -1,14 +1,5 @@
-import { GetStaticPaths, GetStaticProps } from 'next';
 import SinglePost from '@/components/Post/SinglePost';
-import {
-  getAllPosts,
-  getPostsForTopPage,
-  getPostsByPage,
-  getNumberOfPages,
-  getPostsByTagAndPage,
-  getNumberOfPagesByTag,
-  getAllTags,
-} from '../../../../lib/notionAPI';
+import {} from '../../../../lib/notionAPI';
 import Head from 'next/head';
 import Pagenation from '@/components/Pagenation/Pagenation';
 

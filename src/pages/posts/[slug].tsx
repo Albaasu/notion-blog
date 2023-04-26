@@ -1,4 +1,3 @@
-/* eslint-disable react/no-children-prop */
 import React from 'react';
 import { getAllPosts, getSinglePost } from '../lib/notionAPI';
 import { ReactMarkdown } from 'react-markdown/lib/react-markdown';
@@ -15,7 +14,7 @@ export const getStaticPaths = async () => {
   };
 };
 
-export const getStaticProps = async ({ params }: any) => {
+export const getStaticProps = async ({ params }:any) => {
   const post = await getSinglePost(params.slug);
 
   return {
@@ -26,7 +25,7 @@ export const getStaticProps = async ({ params }: any) => {
   };
 };
 
-const Post = ({ post }: any) => {
+const Post = ({ post }:any) => {
   return (
     <section className='container lg:px-2 px-5 h-screen lg:w-2/5 mx-auto mt-20'>
       <h2 className='w-full text-2xl font-medium'>{post.metadata.title}</h2>
@@ -43,24 +42,26 @@ const Post = ({ post }: any) => {
       ))}
 
       <div className='mt-10 font-medium'>
-        <ReactMarkdown
-          children={post.markdown}
+      <ReactMarkdown
           components={{
-            code({  inline, className, children }) {
-              const match = /language-(\w+)/.exec(className || '');
+            code({ inline, className, children }) {
+              const match = /language-(\w+)/.exec(className || "");
               return !inline && match ? (
                 <SyntaxHighlighter
-                  children={String(children).replace(/\n$/, '')}
                   style={vscDarkPlus}
                   language={match[1]}
-                  PreTag='div'
-                />
+                  PreTag="div"
+                >
+                  {String(children).replace(/\n$/, "")}
+                </SyntaxHighlighter>
               ) : (
                 <code>{children}</code>
               );
             },
           }}
-        ></ReactMarkdown>
+        >
+          {post.markdown}
+        </ReactMarkdown>
         <Link href='/'>
           <span
             className='pb-20 block mt-3 text-sk

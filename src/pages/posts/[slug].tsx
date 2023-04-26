@@ -46,7 +46,7 @@ const Post = ({ post }: any) => {
         <ReactMarkdown
           children={post.markdown}
           components={{
-            code({ node, inline, className, children }) {
+            code({  inline, className, children }) {
               const match = /language-(\w+)/.exec(className || '');
               return !inline && match ? (
                 <SyntaxHighlighter

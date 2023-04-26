@@ -20,17 +20,17 @@ export const getAllPosts = async () => {
   });
 };
 
-const getPageMetaData = (post) => {
-  const getTags = (tags) => {
-    const allTags = tags.map((tag) => {
+const getPageMetaData = (post:any) => {
+  const getTags = (tags:any) => {
+    const allTags = tags.map((tag:any) => {
       return tag.name;
     });
     return allTags;
   };
 
-  const getDescription = (richText) => {
+  const getDescription = (richText:any) => {
     let plainText = '';
-    richText.forEach((textObject) => {
+    richText.forEach((textObject:any) => {
       if (textObject.type === 'text') {
         plainText += textObject.text.content;
       }
@@ -48,7 +48,7 @@ const getPageMetaData = (post) => {
   };
 };
 
-export const getSinglePost = async (slug) => {
+export const getSinglePost = async (slug:any) => {
   const response = await notion.databases.query({
     database_id: process.env.NOTION_DATABASE_ID,
     filter: {

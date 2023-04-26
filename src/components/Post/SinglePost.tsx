@@ -21,8 +21,11 @@ const SinglePost = (props: Props) => {
               {title}
             </h2>
             <div className='text-gray-400 mr-2'>{date}</div>
-            {tags.map((tag) => (
-              <span className='text-white-100 bg-gray-500 rounded-xl px-2 pb-1 font-medium mr-2'>
+            {tags.map((tag: string, index: number) => (
+              <span
+                key={index}
+                className='text-white-100 bg-gray-500 rounded-xl px-2 pb-1 font-medium mr-2'
+              >
                 {tag}
               </span>
             ))}
@@ -34,8 +37,11 @@ const SinglePost = (props: Props) => {
           <div className='flex items-center gap-3'>
             <h2 className='text-gray-100 text-2xl font-medium mb-2'>{title}</h2>
             <div className='text-gray-100'>{date}</div>
-            {tags.map((tag) => (
-              <span className='text-white-100 bg-gray-500 rounded-xl px-2 pb-1 font-medium'>
+            {tags.map((tag: string, index: number) => (
+              <span
+                className='text-white-100 bg-gray-500 rounded-xl px-2 pb-1 font-medium'
+                key={index}
+              >
                 {tag}
               </span>
             ))}

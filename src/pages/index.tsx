@@ -1,6 +1,6 @@
 import { GetStaticProps } from 'next';
 import SinglePost from '../components/Post/SinglePost';
-import { getAllPosts, getPostsForTopPage } from './lib/notionAPI';
+import { getPostsForTopPage } from './lib/notionAPI';
 import Head from 'next/head';
 import Link from 'next/link';
 
@@ -28,7 +28,7 @@ export default function Home({ fourPosts }: any) {
         <h1 className='mb-16 text-center text-5xl font-medium'>
           Notion Blog🚀
         </h1>
-        {fourPosts.map((post:any) => (
+        {fourPosts.map((post: any) => (
           <div className='mx-4' key={post.id}>
             <SinglePost
               title={post.title}

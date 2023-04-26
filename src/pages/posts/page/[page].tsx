@@ -1,4 +1,4 @@
-import { GetStaticPaths, GetStaticProps } from 'next';
+import {  GetStaticProps } from 'next';
 import SinglePost from '@/components/Post/SinglePost';
 import {
   getAllPosts,

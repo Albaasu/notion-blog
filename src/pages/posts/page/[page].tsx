@@ -1,8 +1,6 @@
 import {  GetStaticProps } from 'next';
 import SinglePost from '@/components/Post/SinglePost';
 import {
-  getAllPosts,
-  getPostsForTopPage,
   getPostsByPage,
   getNumberOfPages,
 } from './../../lib/notionAPI';
